@@ -6,6 +6,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import  cover from "../../images/asteroid2.jpg";
+import {Divider}  from '@mui/material';
 
 const AsteroidDetail = ({ match }) => {
   const {id} = useParams();
@@ -31,29 +33,29 @@ const AsteroidDetail = ({ match }) => {
 
   return (
     <Container>
-      <Box>
-        <Card sx={{m:2}}>
-          <CardContent>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                Asteroid Details
-          </Typography>
-          {asteroid && (
+      <Box mb={2} p={2} sx={{height:'80vh', borderRadius: '16px', boxShadow: 1, backgroundImage:`url(${cover})`,backgroundRepeat: "no-repeat",  backgroundSize: "cover"}} >
+        <Card sx={{marginTop:2, bgcolor:'rgba(189, 195, 199,0.3)', maxWidth:'450px', height:'45vh'}}>
+        {asteroid && (
                 <div>
-                  <Typography variant="h5" component="div">
-                    {asteroid.name}
+                  <CardContent>
+                    <Typography align='Center' gutterBottom variant="h5" component="h2" sx={{color:'white'}}>
+                        {asteroid.name}
+                    </Typography>
+                  <Divider sx={{color:'white',marginBottom:3, border: '1px solid'}} variant="middle" />
+                  <Typography sx={{ mb: 1.5, fontSize:'15px', color:'white'}} >
+                    <b>Diameter:</b> {asteroid.estimated_diameter.meters.estimated_diameter_max} meters
                   </Typography>
-                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    Diameter: {asteroid.estimated_diameter.meters.estimated_diameter_max} meters
+                  <Typography sx={{ mb: 1.5, fontSize:'15px', color:'white'}} >
+                    <b>Closest Approach Date:</b> {asteroid.close_approach_data[0].close_approach_date}
                   </Typography>
-                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    Closest Approach Date: {asteroid.close_approach_data[0].close_approach_date}
+                  <Typography sx={{ mb: 1.5, fontSize:'15px', color:'white' }}  >
+                   <b>Miss Distance:</b> {asteroid.close_approach_data[0].miss_distance.kilometers} kilometers
                   </Typography>
-                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                  Miss Distance: {asteroid.close_approach_data[0].miss_distance.kilometers} kilometers
-                  </Typography>
+                  </CardContent>       
+                  
                 </div>
               )}
-          </CardContent>
+          
         </Card>
       </Box>    
     </Container>
